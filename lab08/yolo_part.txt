@@ -1,0 +1,37 @@
+commands to run:
+py -m venv .\yoloenv
+.\yoloenv\Scripts\Activate.ps1
+git clone https://github.com/ultralytics/yolov5.git
+cd yolov5
+
+!!! edit the requirements by adding 'pyautogui'
+
+pip install -r requirements.txt
+
+
+
+yolo usage:
+camera:
+py .\detect.py --source 0
+image
+py .\detect.py --weights yolov5s.pt --source '<image path>' --view-img
+video
+py .\detect.py --weights yolov5s.pt --source '<video path>' --view-img
+
+
+
+
+for displaying an image for longer periods of time and at a decent scale:
+
+            if view_img:
+                if platform.system() == "Linux" and p not in windows:
+                    windows.append(p)
+                    cv2.namedWindow(str(p), cv2.WINDOW_NORMAL | cv2.WINDOW_KEEPRATIO)  # allow window resize (Linux)
+                    cv2.resizeWindow(str(p), im0.shape[1], im0.shape[0])
+                screen_width, screen_height = pyautogui.size()
+                max_width = int(screen_width * 0.8)  # 80% of screen width
+                max_height = int(screen_height * 0.8)  # 80% of screen height
+                im0 = cv2.resize(im0, (max_width, max_height)) if im0.shape[1] > max_width else im0
+
+                cv2.imshow(str(p), im0)
+                cv2.waitKey(8000)  # 1 millisecond <--------------------------------------------------------------------------------------------------------
